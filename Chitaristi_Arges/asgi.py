@@ -1,5 +1,5 @@
 """
-ASGI config for djangoChitaristi_Arges project.
+ASGI config for Chitaristi_Arges project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangoChitaristi_Arges.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Chitaristi_Arges.settings')
 
 application = get_asgi_application()

@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5745078e-2ee9-4584-b311-dec3c5d92e39" name="Changes" comment="" />
+    <list default="true" id="5745078e-2ee9-4584-b311-dec3c5d92e39" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Chitaristi_Arges/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/djangoChitaristi_Arges.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/djangoChitaristi_Arges.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoChitaristi_Arges/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chitaristi_Arges/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoChitaristi_Arges/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chitaristi_Arges/asgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoChitaristi_Arges/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chitaristi_Arges/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoChitaristi_Arges/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoChitaristi_Arges/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chitaristi_Arges/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,23 +24,81 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "adiadila123"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/adiadila123/Chitaristi_Arges.git",
+    "accountId": "9bedb793-3c87-483a-9965-ad7c8869e26c"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2jub6ld0I9oLvunmgNm2hNLLOMd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Django Server.djangoChitaristi_Arges.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
+    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/chitaristi/static" />
+      <recent name="$PROJECT_DIR$/chitaristi/templates" />
+      <recent name="$PROJECT_DIR$/chitaristi" />
+      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/static" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="djangoChitaristi_Arges" type="Python.DjangoServer" factoryName="Django server">
+      <module name="djangoChitaristi_Arges" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="djangoChitaristi_Arges.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.9 (djangoChitaristi_Arges)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -43,7 +115,40 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1722239735112</updated>
+      <workItem from="1722239742314" duration="8501000" />
+      <workItem from="1722252464947" duration="8354000" />
+      <workItem from="1722267228120" duration="35622000" />
+      <workItem from="1722358974972" duration="2589000" />
+      <workItem from="1722364872959" duration="5100000" />
+      <workItem from="1722401949819" duration="15540000" />
+      <workItem from="1722445159291" duration="555000" />
+      <workItem from="1722445740281" duration="16176000" />
+      <workItem from="1722487573047" duration="20452000" />
+      <workItem from="1722525361294" duration="20451000" />
+      <workItem from="1722572600576" duration="9582000" />
+      <workItem from="1722584387914" duration="5008000" />
+      <workItem from="1722591811994" duration="14126000" />
+      <workItem from="1722610976371" duration="9502000" />
+      <workItem from="1722660507710" duration="4882000" />
+      <workItem from="1722696918982" duration="835000" />
+      <workItem from="1722700271973" duration="24854000" />
+      <workItem from="1722755224202" duration="10269000" />
+      <workItem from="1722770703865" duration="13742000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
