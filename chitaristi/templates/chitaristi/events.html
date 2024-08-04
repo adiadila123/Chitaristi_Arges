@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Evenimente{% endblock %}
+
+{% block content %}
+<!-- Secțiunea Evenimente -->
+<section id="events" class="events-section py-5">
+    <div class="container bg-lightgray" data-aos="fade-up" data-aos-duration="1500">
+        <h2 class="text-center p-3" data-aos="fade-down" data-aos-duration="1500">Evenimente Viitoare</h2>
+
+        <!-- Separator-->
+        <div class="separator-container">
+            <i class="bi bi-card-list"></i>
+        </div>
+        <!-- Separator End -->
+
+        {% if events %}
+        <ul class="list-group">
+            {% for event in events %}
+            <li class="list-group-item mb-3">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="me-3">
+                        <h5 class="mb-1">{{ event.title }}</h5>
+                        <p class="mb-1">{{ event.description|truncatewords:30 }}</p> <!-- Trunchiază descrierea -->
+                        <small class="text-muted">{{ event.event_date|date:"F j, Y, H:i" }}</small>
+                        <!-- Adăugăm un spațiu suplimentar între data și buton -->
+                        <div class="mb-3"></div>
+                        <!-- Buton pentru deschiderea modalului -->
+                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#eventModal{{ event.id }}">Detalii</button>
+                    </div>
+                    {% if event.image %}
+                    <img src="{{ event.image.url }}" class="img-fluid" style="width: 100px; height: auto;" alt="{{ event.title }}">
+                    {% else %}
+                    <img src="{% static 'images/default-event.jpg' %}" class="img-fluid" style="width: 100px; height: auto;" alt="Eveniment fără imagine">
+                    {% endif %}
+                </div>
+            </li>
+
+            <!-- Modalul pentru fiecare eveniment -->
+            <div class="modal fade" id="eventModal{{ event.id }}"
+                 tabindex="-1" aria-labelledby="eventModalLabel{{ event.id }}"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="eventModalLabel{{ event.id }}">{{ event.title }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {% if event.image %}
+                            <img src="{{ event.image.url }}" class="img-fluid mb-3" alt="{{ event.title }}">
+                            {% endif %}
+                            <div class="p-4">
+                                <p><strong>Descriere:</strong> {{ event.description|linebreaksbr }}</p> <!-- Respectă paragrafele și salturile de linie -->
+                                <p><strong>Dată:</strong> {{ event.event_date|date:"F j, Y, H:i" }}</p>
+                                <p><strong>Locație:</strong> {{ event.location }}</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Închide</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="text-center">Nu sunt evenimente disponibile în acest moment.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

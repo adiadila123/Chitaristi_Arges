@@ -1,0 +1,461 @@
+/* animations.css */
+
+/* Animatie de gradient pentru efect dinamic */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+/* ---- END ---------------------------------- */
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.carousel-item {
+    animation: zoomIn 0.6s ease-in-out;
+}
+
+/* Definește animația fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Aplică animația fade-in elementului */
+.fadeIn {
+    animation: fadeIn 1s ease-in-out;
+}
+/* ---- END ---------------------------------- */
+
+/* Define the fade-up animation */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply the animation to an element */
+.fadeUp {
+  animation: fadeUp 1s ease-out;
+}
+/* ---- END ---------------------------------- */
+
+/* Define the fade-down animation */
+@keyframes fadeDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeDown {
+    animation: fadeDown 1s ease-out;
+   /* animation-delay: 1s;  Întârziere de 1 secundă */
+}
+/* ---- END ---------------------------------- */
+
+
+/* Define the fade-left animation */
+@keyframes fadeLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fadeLeft {
+    animation: fadeLeft 1s ease-out;
+}
+/* ---- END ---------------------------------- */
+
+
+/* Define the fade-right animation */
+@keyframes fadeRight {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fadeRight {
+    animation: fadeRight 1s ease-out;
+}
+/* ---- END ---------------------------------- */
+
+
+/* Rotate animation */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate {
+  animation: rotate 2s linear infinite;
+}
+/* ---- END ---------------------------------- */
+
+/* Bounce animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.bounce {
+  animation: bounce 2s ease infinite;
+}
+/* ---- END ---------------------------------- */
+
+/* Pulse animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+/* ---- END ---------------------------------- */
+
+/* Shake animation */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.shake {
+  animation: shake 0.8s ease;
+}
+/* ---- END ---------------------------------- */
+
+/* Slide-in from left */
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slideInLeft {
+  animation: slideInLeft 0.6s ease-out;
+}
+/* ---- END ---------------------------------- */
+
+/* Slide-in from right */
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slideInRight {
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* Slide-in from top */
+@keyframes slideInTop {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slideInTop {
+  animation: slideInTop 0.6s ease-out;
+}
+/* ---- END ---------------------------------- */
+
+/* Slide-in from bottom */
+@keyframes slideInBottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slideInBottom {
+  animation: slideInBottom 0.6s ease-out;
+}
+/* ---- END ---------------------------------- */
+
+/* Color change animation */
+@keyframes colorChange {
+  0% {
+    color: #ff0000;
+  }
+  50% {
+    color: #00ff00;
+  }
+  100% {
+    color: #0000ff;
+  }
+}
+
+.colorChange {
+  animation: colorChange 3s linear infinite;
+}
+/* ---- END ---------------------------------- */
+
+/* Flash animation */
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.flash {
+  animation: flash 1s linear infinite;
+}
+/* ---- END ---------------------------------- */
+
+/* animations.css */
+
+/* Efect de apariție graduală pentru elementele din listă */
+@keyframes listFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ---- END ---------------------------------- */
+
+/* Aplică animația de apariție graduală elementelor din listă */
+.list-fade-in li {
+    animation: listFadeIn 0.5s ease-out forwards;
+}
+
+/* Efect de mișcare la încărcare pentru elementele din listă */
+@keyframes listSlideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+/* ---- END ---------------------------------- */
+
+/* Aplică animația de mișcare la încărcare */
+.list-slide-in li {
+    animation: listSlideIn 0.5s ease-out forwards;
+}
+
+/* Efect de pulse pentru elementele din listă */
+@keyframes listPulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+/* ---- END ---------------------------------- */
+
+/* Aplică animația de pulsare elementelor din listă */
+.list-pulse li {
+    animation: listPulse 1.5s infinite;
+}
+
+/* Efect de schimbare de culoare pentru elementele din listă */
+@keyframes listColorChange {
+    0% {
+        background-color: #ffcccc;
+    }
+    50% {
+        background-color: #ccffcc;
+    }
+    100% {
+        background-color: #ccccff;
+    }
+}
+/* ---- END ---------------------------------- */
+
+/* Aplică animația de schimbare de culoare elementelor din listă */
+.list-color-change li {
+    animation: listColorChange 3s linear infinite;
+}
+
+/* Efect de scuturare pentru elementele din listă */
+@keyframes listShake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+/* ---- END ---------------------------------- */
+
+/* Aplică animația de scuturare elementelor din listă */
+.list-shake li {
+    animation: listShake 0.8s ease;
+}
+
+/* Efect de rotire pentru elementele din listă */
+@keyframes listRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Aplică animația de rotire elementelor din listă */
+.list-rotate li {
+    animation: listRotate 2s linear infinite;
+}
+
+/* Efect de săritură pentru elementele din listă */
+@keyframes listBounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+/* ---- END ---------------------------------- */
+
+/* Aplică animația de săritură elementelor din listă */
+.list-bounce li {
+    animation: listBounce 1s ease infinite;
+}
+
+/* Efect de flash pentru elementele din listă */
+@keyframes listFlash {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Aplică animația de flash elementelor din listă */
+.list-flash li {
+    animation: listFlash 1s linear infinite;
+}
+/* ---- END ---------------------------------- */
+

@@ -1,10 +1,68 @@
 /* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url('animations.css');
+@import url('modal_slider.css');
 
-body {
-    font-family: 'Open Sans', sans-serif;
+html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
+    width: 100%;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
     background: #f9f9f9;
+    overflow: auto;
+}
+
+hr {
+    background: linear-gradient(to right, rgba(0,0,0,0.1), rgba(0,0,0,0.5), rgba(0,0,0,0.1));
+    color: #33373c;
+    border: none;
+    height: 1px;
+    margin: 40px 0;
+    vertical-align: middle;
+}
+
+/* Header */
+header {
+    background: #007bff;
+    color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Separator */
+.separator-container {
+    text-align: center;
+    margin: 40px 0;
+    position: relative;
+}
+.separator-container::before,
+.separator-container::after {
+    content: "";
+    display: inline-block;
+    width: 45%;
+    height: 1px;
+    background: linear-gradient(to right, rgba(0, 123, 255, 0.3), rgba(0, 123, 255, 0.7), rgba(0, 123, 255, 0.3));
+    vertical-align: middle;
+}
+.separator-container i {
+    position: relative;
+    padding: 0 15px;
+    font-size: 24px;
+    color: #007bff;
+    background: transparent;
+}
+/* ------Separator End --------------- */
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Parametrii pentru umbră */
 }
 
 /* Navbar */
@@ -28,76 +86,145 @@ body {
     color: #aab7b8;
 }
 
-/* Hero Section */
+/* Pagination Controls */
+.pagination-container {
+    margin-top: 20px; /* Adds space above the pagination */
+}
+
+.pagination {
+    display: inline-flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+}
+
+.page-item {
+    margin: 0;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin: 0;
+    line-height: 1.25;
+    color: #007bff;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+/* ------------------------------- */
+
+/* Hero Section Styles */
 .hero-section {
-    background: url('/static/images/hero.jpg') no-repeat center center/cover;
     color: white;
     text-align: center;
-    height: 100vh; /* Întreaga înălțime a ferestrei browser-ului */
+    width: 100%;
+    height: 100vh; /* Full height of the viewport */
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    overflow: hidden; /* Hide overflow to prevent scrollbars */
 }
 
-.hero-content {
+/* Carousel Styles */
+.carousel {
+    width: 100%;
+    height: 100%; /* Ensure carousel takes full height of the parent */
+}
+
+.carousel-inner {
+    height: 100%; /* Ensure inner container takes full height */
+}
+
+.carousel-item {
     position: relative;
-    z-index: 2;
+    height: 100vh; /* Full viewport height */
 }
 
-.hero-section::before {
-    content: '';
+.carousel-item img {
+    display: block;
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    object-fit: cover; /* Cover the carousel area without stretching */
+}
+
+/* Overlay Styles */
+.carousel-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 1;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    z-index: 1; /* Below the caption but above the image */
 }
 
-.hero-content h1 {
-    font-size: 3rem; /* Ajustează dimensiunea fontului */
+/* Caption Styles */
+.carousel-caption {
+    position: absolute;
+    bottom: 30%; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #ffffff;
+    width: 100%;
+    padding: 0 20px;
+    z-index: 2; /* Above the overlay */
 }
 
-.hero-content .btn-primary {
+.carousel-caption h2 {
+    font-size: 3rem; /* Adjust font size as needed */
+    line-height: 1.2;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Parametrii pentru umbră */
+}
+
+.carousel-caption p {
+    font-size: 1.25rem; /* Adjust paragraph font size */
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Parametrii pentru umbră */
+}
+
+.carousel-caption .btn-primary {
     background: linear-gradient(135deg, #40c9ff, #0061ff, #f8acff, #e81cff);
     background-size: 200% 200%;
     animation: gradientAnimation 10s ease infinite;
     margin-bottom: 1rem;
+    font-size: 1.5rem;
 }
 
-.hero-content p {
-    font-size: 1.25rem; /* Ajustează dimensiunea fontului pentru paragraf */
-    margin-bottom: 1.5rem;
-}
-
-.hero-section .btn {
-    opacity: 0.7;
-}
-
-
-/* Header */
-header {
-    background: #004d40;
-    color: #ffffff;
-    padding: 10px 0;
-    text-align: center;
-}
-
-header h1 {
-    margin: 0;
+/* Carousel Indicators Styles */
+.carousel-indicators .active {
+    background-color: #007bff; /* Color of the active dot */
 }
 
 /* Stiluri pentru secțiunea Despre Noi */
+/* About Section Styles */
 .about-section {
-    background: linear-gradient(135deg, #00796b, #004d40, #0288d1, #01579b);
+    background: linear-gradient(135deg, #a5ece3, #099773, #0288d1, #01579b);
     background-size: 200% 200%;
     animation: gradientAnimation 10s ease infinite;
     display: grid;
     row-gap: 50px;
     padding: 60px 0;
-    color: #ffffff;
+    color: #000;
 }
 
 .about-section h2 {
@@ -108,6 +235,8 @@ header h1 {
 
 .about-section .row {
     margin-bottom: 40px;
+    padding: 15px;
+    text-indent: 40px; /* Adaugă indentare textului */
 }
 
 .about-image-left {
@@ -145,76 +274,127 @@ header h1 {
     margin-bottom: 20px;
 }
 
-/* Stiluri pentru secțiunea Galerie */
+
+/* General Styles for Gallery Section */
 .gallery-section {
-    padding: 80px 0;
-    background: linear-gradient(135deg, #ee9cc4, #e81cff, #0288d1, #01579b);
+    background: linear-gradient(135deg, #92cce3, #40c9ff, #db94e3, #e81cff);
     background-size: 200% 200%;
     animation: gradientAnimation 10s ease infinite;
-    color: #ffffff;
-    position: relative;
-    overflow: hidden;
+    padding: 30px 0;
 }
 
-.gallery-title {
-    font-size: 2.5rem;
+.separator-container {
     text-align: center;
-    margin-bottom: 40px;
-    font-weight: bold;
-    color: #ffffff;
+    margin-bottom: 30px;
 }
 
-.gallery-item {
+.separator-container i {
+    font-size: 3rem;
+    color: #007bff;
+}
+
+#filter-buttons {
+    text-align: center;
+}
+
+#filter-buttons .btn {
+    background-color: #ffffff;
+    color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+#filter-buttons .btn:hover {
+    background-color: #007bff;
+    color: #aab7b8;
+}
+
+#filter-buttons .btn-active {
+    background-color: #007bff;
+    color: white;
+}
+
+.photo-gallery, .video-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.photo-item, .video-item {
+    width: 300px;
+    height: 150px;
     position: relative;
     overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
 }
 
-.gallery-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-.gallery-item img {
+/* For images */
+.photo-item img, .video-item img {
     width: 100%;
-    height: 200px;
-    border-radius: 10px;
-    display: block;
-    margin: 0;
-    padding: 0;
-    transition: transform 0.3s ease;
+    height: 150px;
+    object-fit: cover; /* Cover the container without stretching */
 }
 
-.gallery-item img:hover {
-    transform: scale(1.50);
+.gallery-item-content {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
 }
 
-/* Stiluri pentru iconul lupă */
-.loupe-icon {
+.overlay {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 80px;
-    color: #b2b2b2;
-    cursor: pointer;
-    padding: 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
+    transition: opacity 0.3s;
 }
 
-.loupe-icon:hover {
-    opacity: 0.9;
+.gallery-item-content:hover .overlay {
+    opacity: 1;
 }
 
-.gallery-item:hover {
-    display: block;
-    transform: scale(1.05);
+.overlay i {
+    font-size: 2rem;
 }
+
+.overlay p {
+    margin: 10px 0 0;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+.modal-content {
+    background: lightgrey;
+}
+/* Gallery End ----------------------------------------- */
+
 
 /* Stiluri pentru secțiunea Evenimente */
 .events-section {
-    background: linear-gradient(135deg, #ebdbf5, #ddb4f6, #c6d3ed, #a7bdea);
+    background: linear-gradient(135deg, #9bf8f4, #84ffc9, #aab2ff, #eca0ff);
     background-size: 200% 200%;
     animation: gradientAnimation 10s ease infinite;
     padding: 60px 0;
@@ -227,43 +407,66 @@ header h1 {
     font-size: 2.5rem;
 }
 
-.event-card {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ddd; /* Bordură pentru carduri */
-    border-radius: 10px;
+.list-group-item {
+    background: none;
+}
+.events-section .modal-content {
+    background: lightgrey;
+}
+
+.events-section .modal-body img {
+    height: 300px;
+}
+/* Events End ----------------------------------------- */
+
+/* General Card Styles */
+.card {
+    background: lightgray;
+    position: relative;
     overflow: hidden;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Umbra pentru carduri */
-    transition: box-shadow 0.3s, transform 0.3s;
-    height: 100%; /* Asigură că cardurile umplu coloanele */
+    transition: transform 0.3s ease;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
 }
 
-.event-card:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); /* Umbra mai pronunțată la hover */
-    transform: scale(1.02); /* Zoom ușor la hover */
-}
-
-.event-image {
+/* Image in Card */
+.card-img-top {
     width: 100%;
-    height: 200px; /* Înălțime fixă pentru imagini */
-    object-fit: cover; /* Se asigură că imaginea acoperă întreaga zonă */
-    border-bottom: 1px solid #ddd; /* Bordură sub imagine */
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-.event-content {
-    padding: 20px;
-    flex-grow: 1; /* Permite extinderea conținutului pentru a umple cardul */
+/* Overlay and Hover Effects */
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.event-content h3 {
-    margin-top: 0;
-    font-size: 1.5rem;
+.card:hover {
+    transform: scale(1.05);
 }
 
-.event-content p {
-    margin-bottom: 10px;
-    font-size: 1rem;
+.card:hover .card-overlay {
+    opacity: 1;
 }
+
+/* Text inside Overlay */
+.card-overlay .card-text {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* Card End ----------------------------------------- */
 
 /* Stiluri pentru secțiunea Profesor de Chitară */
 .teacher-section {
@@ -295,6 +498,7 @@ header h1 {
 
 .teacher-section .row {
     align-items: center;
+    padding: 15px;
 }
 
 .teacher-section h3 {
@@ -306,22 +510,41 @@ header h1 {
     line-height: 1.6;
 }
 
+.bg-lightgray {
+    background: lightgray;
+    padding: 60px 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+/* Teacher End ----------------------------------------- */
+
+/* Stiluri pentru Contact */
+.contact-section {
+    background: linear-gradient(135deg, #40c9ff, #0061ff, #f8acff, #e81cff);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    padding: 60px 0;
+}
+
+.contact-section .container {
+    background-color: lightgray;
+}
+
+.contact-info {
+    padding: 10px;
+}
+
+.contact-info p {
+    font-size: 1rem;
+}
+
+.map-container iframe {
+    border-radius: 8px;
+}
+/* Contact End ----------------------------------------- */
 
 /* Stiluri pentru modal */
-.modal-content {
-    border-radius: 10px;
-    overflow: hidden;
-}
 
-.modal-body {
-    padding: 0;
-}
-
-.modal-body img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
+/* Modal End ----------------------------------------- */
 
 /* Stiluri pentru Footer */
 footer {
@@ -357,53 +580,132 @@ footer {
 #scrollUpBtn.show {
     opacity: 1; /* Afișează butonul când este activat */
 }
+/* Footer End ----------------------------------------- */
 
-/* Animatii */
 
-/* Animația de mișcare sus-jos */
-.btn-animate {
-    animation: bounce 1s infinite; /* Durata animației și repetarea infinită */
-}
+/* Ecrane mari (peste 1200px) */
+@media (min-width: 1200px) {
+    .hero-section h2 {
+        font-size: 4rem; /* Font mai mare pe ecrane mari */
+    }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
+    .about-section h2 {
+        font-size: 3rem; /* Font mai mare pe ecrane mari */
     }
-    40% {
-        transform: translateY(-10px); /* Mișcare în sus */
-    }
-    60% {
-        transform: translateY(-5px); /* Mișcare în sus */
-    }
-}
 
-/* Animatie de gradient pentru efect dinamic */
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 0%;
+    .gallery-title {
+        font-size: 3rem; /* Font mai mare pentru titlurile din galerie */
     }
-    50% {
-        background-position: 100% 100%;
+
+    .carousel-caption h2 {
+        font-size: 4rem; /* Font mai mare pentru titlurile din carousel */
     }
-    100% {
-        background-position: 0% 0%;
+
+    .carousel-caption p {
+        font-size: 1.5rem; /* Font mai mare pentru descrierea din carousel */
+    }
+
+    .events-section h2 {
+        font-size: 3rem; /* Font mai mare pentru titlurile din secțiunea Evenimente */
     }
 }
 
-@media (max-width: 768px) {
+/* Ecrane medii (între 992px și 1200px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .hero-section h2 {
+        font-size: 3.5rem; /* Font mediu pentru ecrane medii */
+    }
+
+    .about-section h2 {
+        font-size: 2.8rem; /* Font mediu pentru ecrane medii */
+    }
+
+    .gallery-title {
+        font-size: 2.8rem; /* Font mediu pentru titlurile din galerie */
+    }
+
+    .carousel-caption h2 {
+        font-size: 3.5rem; /* Font mediu pentru titlurile din carousel */
+    }
+
+    .carousel-caption p {
+        font-size: 1.3rem; /* Font mediu pentru descrierea din carousel */
+    }
+
+    .events-section h2 {
+        font-size: 2.8rem; /* Font mediu pentru titlurile din secțiunea Evenimente */
+    }
+}
+
+/* Ecrane mici (între 768px și 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .hero-section h2 {
+        font-size: 3rem; /* Font mai mic pentru ecrane mici */
+    }
+
+    .about-section h2 {
+        font-size: 2.5rem; /* Font mai mic pentru ecrane mici */
+    }
+
+    .gallery-title {
+        font-size: 2.5rem; /* Font mai mic pentru titlurile din galerie */
+    }
+
+    .carousel-caption h2 {
+        font-size: 3rem; /* Font mai mic pentru titlurile din carousel */
+    }
+
+    .carousel-caption p {
+        font-size: 1.2rem; /* Font mai mic pentru descrierea din carousel */
+    }
+
+    .events-section h2 {
+        font-size: 2.5rem; /* Font mai mic pentru titlurile din secțiunea Evenimente */
+    }
+}
+
+/* Ecrane foarte mici (până la 767px) */
+@media (max-width: 767px) {
+    .hero-section h2 {
+        font-size: 2.5rem; /* Font mic pentru ecrane foarte mici */
+    }
+
+    .about-section h2 {
+        font-size: 2rem; /* Font mic pentru ecrane foarte mici */
+    }
+
+    .gallery-title {
+        font-size: 2rem; /* Font mic pentru titlurile din galerie */
+    }
+
+    .carousel-caption h2 {
+        font-size: 2.5rem; /* Font mic pentru titlurile din carousel */
+    }
+
+    .carousel-caption p {
+        font-size: 1rem; /* Font mic pentru descrierea din carousel */
+    }
+
+    .events-section h2 {
+        font-size: 2rem; /* Font mic pentru titlurile din secțiunea Evenimente */
+    }
+
     .about-section p {
-        font-size: 1rem; /* Dimensiune font mai mică pe ecrane mici */
+        font-size: 1rem; /* Font mai mic pentru textul din secțiunea Despre Noi */
     }
-    .event-card {
-        margin-bottom: 20px;
+
+    .gallery-item {
+        width: 150px; /* Lățime mai mică pentru elementele din galerie */
     }
+
     .social-icon {
-        font-size: 20px; /* Dimensiune mai mică pe ecrane mici */
-        margin: 0 5px;
+        font-size: 18px; /* Dimensiune mai mică pentru icon-uri de social media */
     }
+
     #scrollUpBtn {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
     }
 }
+/* @Media End ----------------------------------------- */

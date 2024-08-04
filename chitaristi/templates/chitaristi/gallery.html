@@ -1,336 +1,329 @@
+            }
 {% extends 'base.html' %}
 {% load static %}
 
 {% block title %}Galerie{% endblock %}
 
 {% block content %}
-<section id="gallery" class="gallery-section py-5">
-    <div class="container bg-lightgray" data-aos="fade-up" data-aos-duration="1500">
-        <h2 class="gallery-title mb-5" data-aos="fade-down" data-aos-duration="1500">Galerie</h2>
+    <link rel="stylesheet" href="{% static 'css/modal_slider.css' %}">
+    <!-- Sectiunea pentru Galeria Foto si Video -->
+    <section id="gallery" class="gallery-section py-5">
+        <div class="container bg-lightgray" data-aos="fade-up" data-aos-duration="1500">
+            <h2 class="gallery-title mb-5" data-aos="fade-down" data-aos-duration="1500">Galerii</h2>
 
-        <!-- Filter Buttons Start -->
-        <div id="btn-container" class="filter mb-4">
-            <a class="btn {% if type == 'all' %}btn-active{% endif %}" href="?type=all">Toate</a>
-            <a class="btn {% if type == 'photo' %}btn-active{% endif %}" href="?type=photo">Imagini</a>
-            <a class="btn {% if type == 'video' %}btn-active{% endif %}" href="?type=video">Videoclipuri</a>
-        </div>
-        <!-- Filter Buttons End -->
-
-        <!-- Year Filter -->
-        <div id="year-container" class="filter mb-4">
-            <a class="btn {% if selected_year == 'all' %}btn-active{% endif %}" href="?type={{ type }}&year=all">Toate Anii</a>
-            {% for year in image_years %}
-                <a class="btn {% if selected_year == year|stringformat:'s' %}btn-active{% endif %}" href="?type={{ type }}&year={{ year }}">{{ year }}</a>
-            {% endfor %}
-            {% for year in video_years %}
-                <a class="btn {% if selected_year == year|stringformat:'s' %}btn-active{% endif %}" href="?type={{ type }}&year={{ year }}">{{ year }}</a>
-            {% endfor %}
-        </div>
-
-        <!-- Gallery Section Start -->
-        <div class="container">
-            {% if type == 'photo' %}
-                <div class="photo-grid">
-                    {% for image in items %}
-                        <a class="photo-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-url="{{ image.image.url }}">
-                            <img src="{{ image.image.url }}" alt="{{ image.title }}" class="image-fluid"/>
-                            <p class="image-title">{{ image.uploaded_at|date:"j F Y" }}</p>
-                        </a>
-                    {% empty %}
-                        <p class="text-center">Nu sunt imagini disponibile pentru anul {{ selected_year }}.</p>
-                    {% endfor %}
-                </div>
-
-                <!-- Pagination Controls for Images -->
-                <div class="pagination-container text-center mt-4">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center">
-                            {% if photo_page_obj.has_previous %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?type=photo&page={{ photo_page_obj.previous_page_number }}&year={{ selected_year }}">Previous</a>
-                                </li>
-                            {% else %}
-                                <li class="page-item disabled">
-                                    <a class="page-link">Previous</a>
-                                </li>
-                            {% endif %}
-
-                            {% for num in photo_page_obj.paginator.page_range %}
-                                <li class="page-item {% if photo_page_obj.number == num %}active{% endif %}">
-                                    <a class="page-link" href="?type=photo&page={{ num }}&year={{ selected_year }}">{{ num }}</a>
-                                </li>
-                            {% endfor %}
-
-                            {% if photo_page_obj.has_next %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?type=photo&page={{ photo_page_obj.next_page_number }}&year={{ selected_year }}">Next</a>
-                                </li>
-                            {% else %}
-                                <li class="page-item disabled">
-                                    <a class="page-link">Next</a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                    </nav>
-                </div>
-
-            {% elif type == 'video' %}
-                <div class="video-grid">
-                    {% for video in items %}
-                        <a class="video-item" data-bs-toggle="modal" data-bs-target="#videoModal" data-video-url="{{ video.video_url }}">
-                            <div class="video-thumbnail">
-                                <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}" class="image-fluid"/>
-                                <div class="video-overlay">
-                                    <i class="bi bi-play-circle video-icon"></i>
-                                </div>
-                            </div>
-                            <p class="video-title">{{ video.uploaded_at|date:"j F Y" }}</p>
-                        </a>
-                    {% empty %}
-                        <p class="text-center">Nu sunt videoclipuri disponibile pentru anul {{ selected_year }}.</p>
-                    {% endfor %}
-                </div>
-
-                <!-- Pagination Controls for Videos -->
-                <div class="pagination-container text-center mt-4">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center">
-                            {% if video_page_obj.has_previous %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?type=video&page={{ video_page_obj.previous_page_number }}&year={{ selected_year }}">Previous</a>
-                                </li>
-                            {% else %}
-                                <li class="page-item disabled">
-                                    <a class="page-link">Previous</a>
-                                </li>
-                            {% endif %}
-
-                            {% for num in video_page_obj.paginator.page_range %}
-                                <li class="page-item {% if video_page_obj.number == num %}active{% endif %}">
-                                    <a class="page-link" href="?type=video&page={{ num }}&year={{ selected_year }}">{{ num }}</a>
-                                </li>
-                            {% endfor %}
-
-                            {% if video_page_obj.has_next %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?type=video&page={{ video_page_obj.next_page_number }}&year={{ selected_year }}">Next</a>
-                                </li>
-                            {% else %}
-                                <li class="page-item disabled">
-                                    <a class="page-link">Next</a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                                       </nav>
-                </div>
-
-            {% elif type == 'all' %}
-                <div class="photo-grid">
-                    {% for image in photo_page_obj %}
-                        <a class="photo-item" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-url="{{ image.image.url }}">
-                            <img src="{{ image.image.url }}" alt="{{ image.title }}" class="image-fluid"/>
-                            <p class="image-title">{{ image.uploaded_at|date:"j F Y" }}</p>
-                        </a>
-                    {% empty %}
-                        <p class="text-center">Nu sunt imagini disponibile pentru anul {{ selected_year }}.</p>
-                    {% endfor %}
-                </div>
-                <!-- Pagination Controls for Photos -->
-                <div class="pagination-container text-center mt-4">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center">
-                            {% if photo_page_obj.has_previous %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?type=all&photo_page={{ photo_page_obj.previous_page_number }}&year={{ selected_year }}">Previous</a>
-                                </li>
-                            {% else %}
-                                <li class="page-item disabled">
-                                    <a class="page-link">Previous</a>
-                                </li>
-                            {% endif %}
-
-                            {% for num in photo_page_obj.paginator.page_range %}
-                                <li class="page-item {% if photo_page_obj.number == num %}active{% endif %}">
-                                    <a class="page-link" href="?type=all&photo_page={{ num }}&year={{ selected_year }}">{{ num }}</a>
-                                </li>
-                            {% endfor %}
-
-                            {% if photo_page_obj.has_next %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?type=all&photo_page={{ photo_page_obj.next_page_number }}&year={{ selected_year }}">Next</a>
-                                </li>
-                            {% else %}
-                                <li class="page-item disabled">
-                                    <a class="page-link">Next</a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                    </nav>
-                </div>
-
-                <div class="video-grid mt-5">
-                    {% for video in video_page_obj %}
-                        <a class="video-item" data-bs-toggle="modal" data-bs-target="#videoModal" data-video-url="{{ video.video_url }}">
-                            <div class="video-thumbnail">
-                                <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}" class="image-fluid"/>
-                                <div class="video-overlay">
-                                    <i class="bi bi-play-circle video-icon"></i>
-                                </div>
-                            </div>
-                            <p class="video-title">{{ video.uploaded_at|date:"j F Y" }}</p>
-                        </a>
-                    {% empty %}
-                        <p class="text-center">Nu sunt videoclipuri disponibile pentru anul {{ selected_year }}.</p>
-                    {% endfor %}
-                </div>
-                <!-- Pagination Controls for Videos -->
-                <div class="pagination-container text-center mt-4">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center">
-                            {% if video_page_obj.has_previous %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?type=all&video_page={{ video_page_obj.previous_page_number }}&year={{ selected_year }}">Previous</a>
-                                </li>
-                            {% else %}
-                                <li class="page-item disabled">
-                                    <a class="page-link">Previous</a>
-                                </li>
-                            {% endif %}
-
-                            {% for num in video_page_obj.paginator.page_range %}
-                                <li class="page-item {% if video_page_obj.number == num %}active{% endif %}">
-                                    <a class="page-link" href="?type=all&video_page={{ num }}&year={{ selected_year }}">{{ num }}</a>
-                                </li>
-                            {% endfor %}
-
-                            {% if video_page_obj.has_next %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?type=all&video_page={{ video_page_obj.next_page_number }}&year={{ selected_year }}">Next</a>
-                                </li>
-                            {% else %}
-                                <li class="page-item disabled">
-                                    <a class="page-link">Next</a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                    </nav>
-                </div>
-            {% endif %}
-        </div>
-        <!-- Gallery Section End -->
-
-        <!-- Modal pentru Imagini -->
-        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <!-- Modal Body -->
-                    <div class="modal-body text-center">
-                        <img id="modalImage" src="" class="img-fluid" alt="Selected Image"/>
-                    </div>
-                </div>
+            <!-- Separator -->
+            <div class="separator-container">
+                <i class="bi bi-images"></i>
             </div>
-        </div>
+            <!-- Separator End -->
 
-        <!-- Modal pentru Video -->
-        <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <!-- Filter Buttons Start -->
+            <div id="filter-buttons" class="mb-4">
+                <a class="btn {% if type == 'photo' %}btn-active{% endif %}" href="?type=photo">Fotografii</a>
+                <a class="btn {% if type == 'video' %}btn-active{% endif %}" href="?type=video">Videoclipuri</a>
+            </div>
+            <!-- Filter Buttons End -->
+
+            <!-- Display Photos -->
+            {% if type == 'photo' or type == 'all' %}
+            <div class="photo-gallery">
+                {% if photo_page_obj %}
+                    {% for image in photo_page_obj %}
+                    <div class="photo-item">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#photoModal" data-image-url="{{ image.image.url }}" data-image-title="{{ image.title }}">
+                            <div class="gallery-item-content">
+                                <img src="{{ image.image.url }}" alt="{{ image.title }}" loading="lazy">
+                                <div class="overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <p>{{ image.uploaded_at|date:"j F Y" }}</p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <!-- Modal Body -->
-                    <div class="modal-body text-center">
-                        <!-- YouTube Video Embed -->
-                        <div id="modalVideoContainer" class="embed-responsive embed-responsive-16by9">
-                            <iframe id="modalVideo" src="" class="w-100" height="400" frameborder="0" allowfullscreen></iframe>
+                    {% empty %}
+                    <p>Nu sunt fotografii disponibile.</p>
+                    {% endfor %}
+
+                    <!-- Pagination Controls -->
+                    <div class="container">
+                        <div class="pagination-container pagination-sm text-center mt-4">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    {% if photo_page_obj.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?type=photo&photo_page={{ photo_page_obj.previous_page_number }}">Previous</a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <a class="page-link">Previous</a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% for num in photo_page_obj.paginator.page_range %}
+                                        <li class="page-item {% if photo_page_obj.number == num %}active{% endif %}">
+                                            <a class="page-link" href="?type=photo&photo_page={{ num }}">{{ num }}</a>
+                                        </li>
+                                    {% endfor %}
+
+                                    {% if photo_page_obj.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?type=photo&photo_page={{ photo_page_obj.next_page_number }}">Next</a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <a class="page-link">Next</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
                         </div>
                     </div>
+                    <!-- Pagination Controls End -->
+                {% endif %}
+            </div>
+            <!-- Display Photos End -->
+            {% endif %}
+
+            <!-- Display Videos -->
+            {% if type == 'video' or type == 'all' %}
+            <div class="video-gallery">
+                {% if video_page_obj %}
+                    {% for video in video_page_obj %}
+                    <div class="video-item">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#videoModal" data-video-url="{{ video.video_url }}" data-video-title="{{ video.title }}">
+                            <div class="gallery-item-content">
+                                <img src="{% if video.thumbnail %}{{ video.thumbnail.url }}{% else %}{% static 'images/default-thumbnail.jpg' %}{% endif %}" alt="{{ video.title }}" loading="lazy">
+                                <div class="overlay">
+                                    <i class="fas fa-play-circle"></i>
+                                    <p>{{ video.uploaded_at|date:"j F Y" }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% empty %}
+                    <p>Nu sunt videoclipuri disponibile.</p>
+                    {% endfor %}
+
+                    <!-- Pagination Controls -->
+                    <div class="container">
+                        <div class="pagination-container pagination-sm text-center mt-4">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    {% if video_page_obj.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?type=video&video_page={{ video_page_obj.previous_page_number }}">Previous</a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <a class="page-link">Previous</a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% for num in video_page_obj.paginator.page_range %}
+                                        <li class="page-item {% if video_page_obj.number == num %}active{% endif %}">
+                                            <a class="page-link" href="?type=video&video_page={{ num }}">{{ num }}</a>
+                                        </li>
+                                    {% endfor %}
+
+                                    {% if video_page_obj.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?type=video&video_page={{ video_page_obj.next_page_number }}">Next</a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item disabled">
+                                            <a class="page-link">Next</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- Pagination Controls End -->
+                {% endif %}
+            </div>
+            <!-- Display Videos End -->
+            {% endif %}
+        </div>
+    </section>
+    <!-- Sectiunea pentru Galeria Foto si Video -->
+
+    <!-- Modal pentru Foto -->
+    <div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="photoModalLabel">Galeria de Imagini</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <!-- Modal Header End -->
+
+                <!-- Modal Body -->
+                <div class="modal-body p-0">
+                    <!-- Carousel -->
+                    <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel">
+                          <!-- The slideshow/carousel -->
+                          <div class="carousel-inner">
+                            <!-- Slides will be added dynamically here -->
+                          </div>
+                        <!-- The slideshow/carousel End -->
+
+                        <!-- Left and right controls/icons -->
+                          <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                          </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                          </button>
+                        <!-- Left and right controls/icons End -->
+                    </div>
+                    <!-- Carousel End -->
+                </div>
+                <!-- Modal Body End -->
             </div>
         </div>
     </div>
-</section>
+    <!-- End Modal pentru Foto -->
+
+    <!-- Modal pentru Video -->
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <!-- Modal Content -->
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="videoModalLabel">Video</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Modal Header End -->
+
+                <!-- Modal Body -->
+                <div class="modal-body text-center p-0 ">
+                    <div id="modalVideoContainer" class="embed-responsive embed-responsive-16by9">
+                        <iframe id="modalVideo" src="" class="w-100" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
+                <!-- Modal Body End -->
+            </div>
+            <!-- Modal Content End -->
+        </div>
+    </div>
+    <!-- Modal pentru Video End -->
 
 {% block extra_js %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const filterButtons = document.querySelectorAll('#btn-container .btn');
-        const yearButtons = document.querySelectorAll('#year-container .btn');
+    <!-- Codul Java Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const photoLinks = document.querySelectorAll('.photo-item a');
+            const videoLinks = document.querySelectorAll('.video-item a');
 
-        const modalImage = document.getElementById('modalImage');
-        const modalVideo = document.getElementById('modalVideo');
-        const videoModal = new bootstrap.Modal(document.getElementById('videoModal'));
-        const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+            const photoModal = new bootstrap.Modal(document.getElementById('photoModal'));
+            const videoModal = new bootstrap.Modal(document.getElementById('videoModal'));
 
-        // Function to handle filter button clicks
-        function handleFilterClick(event) {
-            const filter = event.target.getAttribute('href').substring(1);
-            // Set the URL based on selected filter
-            const urlParams = new URLSearchParams(window.location.search);
-            urlParams.set('type', filter);
-            window.location.search = urlParams.toString();
-        }
+            const carouselInner = document.querySelector('#photoModal .carousel-inner');
+            let images = [];
+            let currentIndex = 0;
 
-        // Function to handle year button clicks
-        function handleYearClick(event) {
-            const year = event.target.getAttribute('href').substring(1);
-            // Set the URL based on selected year
-            const urlParams = new URLSearchParams(window.location.search);
-            urlParams.set('year', year);
-            window.location.search = urlParams.toString();
-        }
+            // Initialize the photo modal when clicked
+            photoLinks.forEach((link) => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const imageUrl = this.getAttribute('data-image-url');
+                   // const imageTitle = this.getAttribute('data-image-title');
 
-        // Add click event to filter buttons
-        filterButtons.forEach(button => {
-            button.addEventListener('click', handleFilterClick);
-        });
+                    // Collect all images in the gallery
+                    images = Array.from(document.querySelectorAll('.photo-item a')).map(link => ({
+                        url: link.getAttribute('data-image-url'),
+                       // title: link.getAttribute('data-image-title')
+                    }));
 
-        // Add click event to year buttons
-        yearButtons.forEach(button => {
-            button.addEventListener('click', handleYearClick);
-        });
-
-        // Handle image modal display
-        document.querySelectorAll('.photo-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const imageUrl = this.getAttribute('data-image-url');
-                modalImage.src = imageUrl;
-                imageModal.show();
+                    currentIndex = images.findIndex(image => image.url === imageUrl);
+                    updateCarousel();
+                                document.getElementById('photoModalLabel').textContent = imageTitle; // Set title
+                    photoModal.show();
+                });
             });
-        });
 
-        // Handle video modal display
-        document.querySelectorAll('.video-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const videoUrl = this.getAttribute('data-video-url');
-                modalVideo.src = getVideoEmbed(videoUrl);
-                videoModal.show();
-            });
-        });
+            // Update the carousel based on the current image index
+            function updateCarousel() {
+                carouselInner.innerHTML = ''; // Clear existing images
 
-        // Determine the type of video and return embed URL or video source
-        function getVideoEmbed(url) {
-            if (url.includes('youtube.com')) {
-                const videoId = url.split('v=')[1].split('&')[0];
-                return `https://www.youtube.com/embed/${videoId}`;
-            } else if (url.includes('vimeo.com')) {
-                const videoId = url.split('/').pop();
-                return `https://player.vimeo.com/video/${videoId}`;
-            } else {
-                return url; // Assuming direct video URL
+                images.forEach((image, index) => {
+                    const item = document.createElement('div');
+                    item.classList.add('carousel-item');
+                    if (index === currentIndex) item.classList.add('active');
+
+                    // Add AOS attribute
+                item.setAttribute('data-aos', 'fade-in');
+                item.setAttribute('data-aos-duration', index * 500); // Optional delay for each item
+
+                    const img = document.createElement('img');
+                    img.src = image.url;
+                    img.classList.add('d-block', 'w-100');
+                    img.alt = image.title; // Set the alt text to the image title
+                    item.appendChild(img);
+
+                    carouselInner.appendChild(item);
+                });
             }
-        }
 
-        // Reset video source when modal is hidden
-        videoModal._element.addEventListener('hidden.bs.modal', function() {
-            modalVideo.src = '';
+            // Handle Prev button click
+            document.querySelector('#photoModal .carousel-control-prev')?.addEventListener('click', () => {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+                updateCarousel();
+            });
+
+            // Handle Next button click
+            document.querySelector('#photoModal .carousel-control-next')?.addEventListener('click', () => {
+                currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+                updateCarousel();
+            });
+
+            // Handle video modal interactions
+            videoLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const videoUrl = this.getAttribute('data-video-url');
+                    const videoTitle = this.getAttribute('data-video-title');
+                    const modalVideo = document.getElementById('modalVideo');
+                    modalVideo.src = getVideoEmbed(videoUrl);
+                    document.getElementById('videoModalLabel').textContent = videoTitle; // Set title
+                    videoModal.show();
+                });
+            });
+
+            // Function to get embedded video URL based on video URL
+            function getVideoEmbed(url) {
+                let embedUrl = '';
+                if (url.includes('youtube.com')) {
+                    const urlParams = new URLSearchParams(new URL(url).search);
+                    const videoId = urlParams.get('v') || url.split('/').pop().split('?')[0];
+                    if (videoId) {
+                        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                    }
+                } else if (url.includes('youtu.be')) {
+                    const videoId = url.split('/').pop().split('?')[0];
+                    if (videoId) {
+                        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                    }
+                } else if (url.includes('vimeo.com')) {
+                    const videoId = url.split('/').pop();
+                    if (videoId) {
+                        embedUrl = `https://player.vimeo.com/video/${videoId}`;
+                    }
+                } else {
+                    embedUrl = url; // Assuming direct video URL
+                }
+                return embedUrl;
+            }
+
+            // Clear the video src when the modal is hidden
+            document.getElementById('videoModal').addEventListener('hidden.bs.modal', function() {
+                const modalVideo = document.getElementById('modalVideo');
+                modalVideo.src = ''; // Reset src to stop video playback
+            });
         });
-    });
-</script>
+    </script>
 {% endblock %}
+
 {% endblock %}
