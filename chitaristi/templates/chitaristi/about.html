@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Despre Noi{% endblock %}
+
+{% block content %}
+<!-- Secțiunea Despre Noi -->
+<section id="about" class="about-section">
+    <div class="container">
+        <h2>Despre Noi</h2>
+        <div class="row g-5 align-items-center mb-5" data-aos="fade-right" data-aos-duration="1500">
+            <!-- Imaginea din stânga -->
+            <div class="col-md-4 pb-5">
+                <img src="{% static 'about.html' %}" alt="Despre Noi 1" class="img-fluid about-image-left">
+            </div>
+            <div class="col-md-8 pb-5">
+                <p class="text-center">La Chitaristii de la Arges, suntem mândri să fim lideri în domeniul educației muzicale, oferind o experiență unică pentru toți iubitorii de chitară. Echipa noastră de experți este formată din muzicieni pasionați și pedagogi de elită, care au dedicat ani întregi perfecționării artei lor și formării noilor talente.</p>
+            </div>
+        </div>
+        <hr class="mb-5 bg-grdian bg-gradian">
+        <div class="row g-5 align-items-center mb-5" data-aos="fade-left" data-aos-duration="1500">
+            <!-- Imaginea din dreapta -->
+            <div class="col-md-8">
+                <p class="text-center">Credem cu tărie că muzica are puterea de a schimba vieți. De aceea, ne angajăm să furnizăm lecții personalizate care să inspire și să dezvolte abilitățile fiecărui student într-un mod inovativ și captivant. Fiecare membru al echipei noastre este dedicat să împărtășească cunoștințele acumulate și să sprijine dezvoltarea personală și profesională a elevilor noștri.</p>
+            </div> 
+            <div class="col-md-4">
+                <img src="{% static 'images/about-us2.jpg' %}" alt="Despre Noi 2" class="img-fluid about-image-right">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

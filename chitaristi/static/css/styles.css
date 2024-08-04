@@ -1,0 +1,409 @@
+/* styles.css */
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+}
+
+/* Navbar */
+.navbar-brand {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-brand .fa-guitar {
+    font-size: 2rem; /* Dimensiunea iconului chitară */
+    margin-right: 10px; /* Spațiu între icon și text */
+}
+
+.nav-link {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: #aab7b8;
+}
+
+/* Hero Section */
+.hero-section {
+    background: url('/static/images/hero.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    height: 100vh; /* Întreaga înălțime a ferestrei browser-ului */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 3rem; /* Ajustează dimensiunea fontului */
+}
+
+.hero-content .btn-primary {
+    background: linear-gradient(135deg, #40c9ff, #0061ff, #f8acff, #e81cff);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.25rem; /* Ajustează dimensiunea fontului pentru paragraf */
+    margin-bottom: 1.5rem;
+}
+
+.hero-section .btn {
+    opacity: 0.7;
+}
+
+
+/* Header */
+header {
+    background: #004d40;
+    color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* Stiluri pentru secțiunea Despre Noi */
+.about-section {
+    background: linear-gradient(135deg, #00796b, #004d40, #0288d1, #01579b);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    display: grid;
+    row-gap: 50px;
+    padding: 60px 0;
+    color: #ffffff;
+}
+
+.about-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+}
+
+.about-section .row {
+    margin-bottom: 40px;
+}
+
+.about-image-left {
+    width: 100%;
+    height: 300px;
+    border-radius: 15px;
+    transform: perspective(1000px) rotateY(25deg) translateX(10px); /* Rotație de 25 de grade și mișcare în dreapta */
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Umbra pentru efectul 3D */
+}
+
+.about-image-left:hover {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg); /* Inițializarea transformărilor */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); /* Umbra mai pronunțată */
+}
+
+.about-image-right {
+    width: 100%;
+    height: 300px;
+    border-radius: 15px;
+    padding: 0;
+    transform: perspective(1000px) rotateY(-25deg) translateX(-10px); /* Rotație de 25 de grade și mișcare în dreapta */
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Umbra pentru efectul 3D */
+}
+
+.about-image-right:hover {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg); /* Inițializarea transformărilor */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); /* Umbra mai pronunțată */
+}
+
+.about-section p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* Stiluri pentru secțiunea Galerie */
+.gallery-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #ee9cc4, #e81cff, #0288d1, #01579b);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.50);
+}
+
+/* Stiluri pentru iconul lupă */
+.loupe-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    color: #b2b2b2;
+    cursor: pointer;
+    padding: 20px;
+    opacity: 0;
+}
+
+.loupe-icon:hover {
+    opacity: 0.9;
+}
+
+.gallery-item:hover {
+    display: block;
+    transform: scale(1.05);
+}
+
+/* Stiluri pentru secțiunea Evenimente */
+.events-section {
+    background: linear-gradient(135deg, #ebdbf5, #ddb4f6, #c6d3ed, #a7bdea);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    padding: 60px 0;
+    height: 100vh;
+}
+
+.events-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+}
+
+.event-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd; /* Bordură pentru carduri */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Umbra pentru carduri */
+    transition: box-shadow 0.3s, transform 0.3s;
+    height: 100%; /* Asigură că cardurile umplu coloanele */
+}
+
+.event-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); /* Umbra mai pronunțată la hover */
+    transform: scale(1.02); /* Zoom ușor la hover */
+}
+
+.event-image {
+    width: 100%;
+    height: 200px; /* Înălțime fixă pentru imagini */
+    object-fit: cover; /* Se asigură că imaginea acoperă întreaga zonă */
+    border-bottom: 1px solid #ddd; /* Bordură sub imagine */
+}
+
+.event-content {
+    padding: 20px;
+    flex-grow: 1; /* Permite extinderea conținutului pentru a umple cardul */
+}
+
+.event-content h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.event-content p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+/* Stiluri pentru secțiunea Profesor de Chitară */
+.teacher-section {
+    background: linear-gradient(135deg, #98eae3, #57ebde, #d0eca1, #aefb2a);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    padding: 60px 0;
+}
+
+.teacher-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+}
+
+.teacher-section img {
+    border-radius: 15px;
+    max-width: 100%;
+    transform: perspective(1000px) rotateY(25deg) translateX(10px); /* Rotație de 25 de grade și mișcare în dreapta */
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Umbra pentru efectul 3D */
+
+}
+
+.teacher-section img:hover {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg); /* Inițializarea transformărilor */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); /* Umbra mai pronunțată */
+}
+
+.teacher-section .row {
+    align-items: center;
+}
+
+.teacher-section h3 {
+    margin-top: 0;
+}
+
+.teacher-section p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+
+/* Stiluri pentru modal */
+.modal-content {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-body {
+    padding: 0;
+}
+
+.modal-body img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Stiluri pentru Footer */
+footer {
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Stiluri pentru icon-uri de social media */
+.social-icons {
+    margin: 10px 0;
+}
+
+.social-icon {
+    color: #ffffff;
+    font-size: 24px;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.social-icon:hover {
+    color: #aab7b8; /* Culoare verde la hover */
+}
+
+/* Stiluri pentru Butonul Scroll-Up */
+#scrollUpBtn {
+    cursor: pointer;
+    font-size: 24px;
+    opacity: 0; /* Ascunde butonul inițial */
+    transition: opacity 0.3s ease-in-out;
+}
+
+#scrollUpBtn.show {
+    opacity: 1; /* Afișează butonul când este activat */
+}
+
+/* Animatii */
+
+/* Animația de mișcare sus-jos */
+.btn-animate {
+    animation: bounce 1s infinite; /* Durata animației și repetarea infinită */
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px); /* Mișcare în sus */
+    }
+    60% {
+        transform: translateY(-5px); /* Mișcare în sus */
+    }
+}
+
+/* Animatie de gradient pentru efect dinamic */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-section p {
+        font-size: 1rem; /* Dimensiune font mai mică pe ecrane mici */
+    }
+    .event-card {
+        margin-bottom: 20px;
+    }
+    .social-icon {
+        font-size: 20px; /* Dimensiune mai mică pe ecrane mici */
+        margin: 0 5px;
+    }
+    #scrollUpBtn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
